@@ -49,33 +49,31 @@ async def status_message_f(client, message):
             e_t_a = str(download.eta_string())
             current_gid = str(download.gid)
             #
-            msg += f"<u>{downloading_dir_name}</u>"
-            msg += " | "
+            msg += f"<B>{downloading_dir_name}</B>\n"
             msg += f"{total_length_size}"
             msg += " | "
             msg += f"{progress_percent_string}"
             msg += " | "
+            msg += f"{download_current_status}"
+            msg += " | \n"
             msg += f"{DOWNLOAD_ICON} {down_speed_string}"
             msg += " | "
             msg += f"{UPLOAD_ICON} {up_speed_string}"
             msg += " | "
             msg += f"{e_t_a}"
-            msg += " | "
-            msg += f"{download_current_status}"
-            msg += " | "
+            msg += " | \n"
             msg += f"<code>/cancel {current_gid}</code>"
-            msg += " | "
             msg += "\n\n"
         LOGGER.info(msg)
         if msg == "":
-            msg = "🤷‍♂️ No Active, Queued or Paused TORRENTs"
+            msg = "**No Active, Queued or Paused Torrents**"
         await message.reply_text(msg, quote=True)
 
 
 async def cancel_message_f(client, message):
     if len(message.command) > 1:
         # /cancel command
-        i_m_s_e_g = await message.reply_text("checking..?", quote=True)
+        i_m_s_e_g = await message.reply_text("**Cancelling...**", quote=True)
         aria_i_p = await aria_start()
         g_id = message.command[1].strip()
         LOGGER.info(g_id)
@@ -84,11 +82,11 @@ async def cancel_message_f(client, message):
             LOGGER.info(downloads)
             LOGGER.info(downloads.remove(force=True))
             await i_m_s_e_g.edit_text(
-                "Leech Cancelled"
+                "**Leech Cancelled**"
             )
         except Exception as e:
             await i_m_s_e_g.edit_text(
-                "<i>FAILED</i>\n\n" + str(e) + "\n#error"
+                "<i>FAILED</i>\n\n" + str(e) + "\n#Error"
             )
     else:
         await message.delete()
@@ -140,7 +138,7 @@ async def exec_message_f(client, message):
 
 async def upload_document_f(client, message):
     imsegd = await message.reply_text(
-        "processing ..."
+        "**Processing ...**"
     )
     if await AdminCheck(client, message.chat.id, message.from_user.id):
         if " " in message.text:

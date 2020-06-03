@@ -131,9 +131,9 @@ async def extract_youtube_dl_formats(url, yt_dl_user_name, yt_dl_pass_word, user
                             ]
                     inline_keyboard.append(ikeyboard)
                 if duration is not None:
-                    cb_string_64 = "{}|{}|{}".format("audio", "64k", "mp3")
-                    cb_string_128 = "{}|{}|{}".format("audio", "128k", "mp3")
-                    cb_string = "{}|{}|{}".format("audio", "320k", "mp3")
+                    cb_string_64 = "{}|{}|{}".format("Audio", "64k", "mp3")
+                    cb_string_128 = "{}|{}|{}".format("Audio", "128k", "mp3")
+                    cb_string = "{}|{}|{}".format("Audio", "320k", "mp3")
                     inline_keyboard.append([
                         pyrogram.InlineKeyboardButton(
                             "MP3 " + "(" + "64 kbps" + ")", callback_data=cb_string_64.encode("UTF-8")),
@@ -148,7 +148,7 @@ async def extract_youtube_dl_formats(url, yt_dl_user_name, yt_dl_pass_word, user
                 format_id = current_r_json["format_id"]
                 format_ext = current_r_json["ext"]
                 cb_string_video = "{}|{}|{}".format(
-                    "video", format_id, format_ext)
+                    "Video", format_id, format_ext)
                 inline_keyboard.append([
                     pyrogram.InlineKeyboardButton(
                         "SVideo",
@@ -158,6 +158,5 @@ async def extract_youtube_dl_formats(url, yt_dl_user_name, yt_dl_pass_word, user
             break
         reply_markup = pyrogram.InlineKeyboardMarkup(inline_keyboard)
         # LOGGER.info(reply_markup)
-        succss_mesg = """Select the desired format: 👇
-<u>mentioned</u> <i>file size might be approximate</i>"""
+        succss_mesg = """Select Your Desired Format: 👇"""
         return thumb_image, succss_mesg, reply_markup

@@ -84,7 +84,7 @@ async def youtube_dl_call_back(bot, update):
     LOGGER.info(custom_file_name)
     #
     await update.message.edit_caption(
-        caption="trying to download"
+        caption="**Download Started**"
     )
     description = "@PublicLeech"
     if "fulltitle" in response_json:
@@ -170,7 +170,7 @@ async def youtube_dl_call_back(bot, update):
         dir_contents = len(os.listdir(tmp_directory_for_each_user))
         # dir_contents.sort()
         await update.message.edit_caption(
-            caption=f"found {dir_contents} files"
+            caption=f"Found {dir_contents} Files"
         )
         user_id = update.from_user.id
         #
