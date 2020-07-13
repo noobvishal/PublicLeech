@@ -53,9 +53,9 @@ async def extract_youtube_dl_formats(url, yt_dl_user_name, yt_dl_pass_word, user
     # Wait for the subprocess to finish
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
-    LOGGER.info(e_response)
+    # LOGGER.info(e_response)
     t_response = stdout.decode().strip()
-    LOGGER.info(t_response)
+    # LOGGER.info(t_response)
     # https://github.com/rg3/youtube-dl/issues/2630#issuecomment-38635239
     if e_response:
         # logger.warn("Status : FAIL", exc.returncode, exc.output)
@@ -84,7 +84,13 @@ async def extract_youtube_dl_formats(url, yt_dl_user_name, yt_dl_pass_word, user
         #
         for current_r_json in response_json:
             #
-            thumb_image = current_r_json.get("thumbnail", thumb_image)
+            thumb_image = current_r_json.get("thumbnail", None)
+            if thumb_image is None:
+                thumb_image = current_r_json.get("thumbnails", None)
+                if thumb_image is not None:
+                    thumb_image = thumb_image[0]["url"]
+            if thumb_image is None:
+                thumb_image = DEF_THUMB_NAIL_VID_S
             #
             duration = None
             if "duration" in current_r_json:
@@ -95,6 +101,10 @@ async def extract_youtube_dl_formats(url, yt_dl_user_name, yt_dl_pass_word, user
                     format_string = formats.get("format_note")
                     if format_string is None:
                         format_string = formats.get("format")
+                    # don't display formats, without audio
+                    # https://t.me/c/1434259219/269937
+                    if "DASH" in format_string.upper():
+                        continue
                     format_ext = formats.get("ext")
                     approx_file_size = ""
                     if "filesize" in formats:
