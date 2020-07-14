@@ -29,21 +29,21 @@ async def get_markup(message: Message):
     inline_keyboard = []
     ikeyboard = []
     ikeyboard.append(InlineKeyboardButton(
-        "leech 🤔🤔",
+        "Leech (Direct/Torrent)",
         callback_data=("leech").encode("UTF-8")
     ))
     ikeyboard.append(InlineKeyboardButton(
-        "youtube-dl",
+        "YouTube-DL",
         callback_data=("ytdl").encode("UTF-8")
     ))
     inline_keyboard.append(ikeyboard)
     ikeyboard = []
     ikeyboard.append(InlineKeyboardButton(
-        "A leech TAR . GZ  🤔🤔",
+        "Leech (Tar)",
         callback_data=("leecha").encode("UTF-8")
     ))
     ikeyboard.append(InlineKeyboardButton(
-        "A youtube-dl TAR . GZ",
+        "YouTube-DL (Tar)",
         callback_data=("ytdla").encode("UTF-8")
     ))
     inline_keyboard.append(ikeyboard)
@@ -60,7 +60,7 @@ async def get_markup(message: Message):
             it_r = 0
             for remote_name in remote_names:
                 ikeyboard.append(InlineKeyboardButton(
-                    f"RClone LEECH {remote_name}",
+                    f"RClone Leech {remote_name}",
                     callback_data=(f"leech_rc_{it_r}").encode("UTF-8")
                 ))
                 # ikeyboard.append(InlineKeyboardButton(
@@ -74,6 +74,6 @@ async def get_markup(message: Message):
     inline_keyboard = []
 
     reply_text = (
-        "please select the required option"
+        "Select Your Prefered Method Of Download 👇"
     )
     return reply_text, reply_markup

@@ -85,14 +85,14 @@ def add_magnet(aria_instance, magnetic_link, c_file_name):
             options=options
         )
     except Exception as e:
-        return False, "**FAILED** \n" + str(e) + " \nYour Link Was Too Slow."
+        return False, "#FAILED \n" + str(e) + " \nYour Link Was Too Slow."
     else:
         return True, "" + download.gid + ""
 
 
 def add_torrent(aria_instance, torrent_file_path):
     if torrent_file_path is None:
-        return False, "**FAILED** \n" + str(e) + " \nSomething Wrong When Trying To Add <u>TORRENT</u> File"
+        return False, "#FAILED \n" + str(e) + " \nSomething Wrong When Trying To Add <u>TORRENT</u> File"
     if os.path.exists(torrent_file_path):
         # Add Torrent Into Queue
         try:
@@ -103,11 +103,11 @@ def add_torrent(aria_instance, torrent_file_path):
                 position=None
             )
         except Exception as e:
-            return False, "**FAILED** \n" + str(e) + " \nYour Link Was Too Slow."
+            return False, "#FAILED \n" + str(e) + " \nYour Link Was Too Slow."
         else:
             return True, "" + download.gid + ""
     else:
-        return False, "**FAILED** \n" + str(e) + " \nPlease Try Other Sources To Get Workable Link"
+        return False, "#FAILED \n" + str(e) + " \nPlease Try Other Sources To Get Workable Link"
 
 
 def add_url(aria_instance, text_url, c_file_name):
@@ -124,7 +124,7 @@ def add_url(aria_instance, text_url, c_file_name):
             options=options
         )
     except Exception as e:
-        return False, "**FAILED** \n" + str(e) + " \nYour Link Was Too Slow."
+        return False, "#FAILED \n" + str(e) + " \nYour Link Was Too Slow."
     else:
         return True, "" + download.gid + ""
 
@@ -261,7 +261,7 @@ async def call_apropriate_function(
         message_id = final_response[key_f_res_se]
         channel_id = str(sent_message_to_update_tg_p.chat.id)[4:]
         private_link = f"https://t.me/c/{channel_id}/{message_id}"
-        message_to_send += "**File Link:** <a href='"
+        message_to_send += "<b>File Link:</b> <a href='"
         message_to_send += private_link
         message_to_send += "'>"
         message_to_send += local_file_name
@@ -272,7 +272,7 @@ async def call_apropriate_function(
         message_to_send = mention_req_user + message_to_send
         message_to_send = message_to_send + "\n\n" + "#Uploads"
     else:
-        message_to_send = "<i>FAILED</i> To Upload The Files"
+        message_to_send = "#FAILED To Upload The Files"
     await sent_message_to_update_tg_p.reply_to_message.reply_text(
         text=message_to_send,
         quote=True,

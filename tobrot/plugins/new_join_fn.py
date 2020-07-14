@@ -51,7 +51,7 @@ async def rename_message_f(client, message):
     ])
     reply_markup = pyrogram.InlineKeyboardMarkup(inline_keyboard)
     await message.reply_text(
-        "**Use @RenameBot**",
+        "<b>Use @Renamer_Bot</b>",
         quote=True,
         reply_markup=reply_markup
     )

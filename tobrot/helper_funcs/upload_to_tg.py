@@ -82,7 +82,7 @@ async def upload_to_tg(
             i_m_s_g = await message.reply_text(
                 f"<B>Detected File Size:</B> {d_f_s}\n"
                 f"The File Size Is More Then Telegram's Limit\n"
-                "**Attempting To Split The Files...**"
+                f"<i>Attempting To Split The Files...</i>"
             )
             splitted_dir = await split_large_files(local_file_name)
             totlaa_sleif = os.listdir(splitted_dir)
@@ -92,8 +92,8 @@ async def upload_to_tg(
             ba_se_file_name = os.path.basename(local_file_name)
             await i_m_s_g.edit_text(
                 f"<B>Detected File Size:</B> {d_f_s}\n"
-                f"<code>{ba_se_file_name}</code> Splitted Into **{number_of_files}** Files.\n"
-                "**Uploading To Telegram**"
+                f"<code>{ba_se_file_name}</code> Splitted Into <i>{number_of_files}</i> Files.\n"
+                "<i>Uploading To Telegram...</i>"
             )
             for le_file in totlaa_sleif:
                 # recursion: will this FAIL somewhere?
@@ -133,7 +133,7 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, e
         message_for_progress_display = message
         if not edit_media:
             message_for_progress_display = await message.reply_text(
-                "**Upload Started For:** `{}`".format(os.path.basename(local_file_name))
+                "<b>Upload Started For:</b> `{}`".format(os.path.basename(local_file_name))
             )
         if local_file_name.upper().endswith(("MKV", "MP4", "WEBM")):
             metadata = extractMetadata(createParser(local_file_name))
@@ -207,7 +207,7 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, e
                     # reply_to_message_id=message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        "**Upload Started**",
+                        "<b>Upload Started</b>",
                         message_for_progress_display,
                         start_time
                     )
@@ -262,7 +262,7 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, e
                     # reply_to_message_id=message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        "**Upload Started**",
+                        "<b>Upload Started</b>",
                         message_for_progress_display,
                         start_time
                     )
@@ -304,7 +304,7 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, e
                     # reply_to_message_id=message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        "**Upload Started**",
+                        "<b>Upload Started</b>",
                         message_for_progress_display,
                         start_time
                     )
@@ -312,7 +312,7 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, e
             if thumb is not None:
                 os.remove(thumb)
     except Exception as e:
-        await message_for_progress_display.edit_text("**FAILED**\n" + str(e))
+        await message_for_progress_display.edit_text("#FAILED \n" + str(e))
     else:
         if message.message_id != message_for_progress_display.message_id:
             await message_for_progress_display.delete()

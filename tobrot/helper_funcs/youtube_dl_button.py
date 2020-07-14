@@ -79,7 +79,7 @@ async def youtube_dl_call_back(bot, update):
     LOGGER.info(custom_file_name)
     #
     await update.message.edit_caption(
-        caption="**Download Started**"
+        caption="<b>Download Started</b>"
     )
     description = "@PublicLeech"
     if "fulltitle" in response_json:

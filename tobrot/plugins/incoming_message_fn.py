@@ -33,7 +33,7 @@ from tobrot.helper_funcs.create_r_o_m import get_markup
         
 async def incoming_purge_message_f(client, message):
     """/purge command"""
-    i_m_sefg2 = await message.reply_text("**Purging...**", quote=True)
+    i_m_sefg2 = await message.reply_text("<b>Purging...</b>", quote=True)
     if await AdminCheck(client, message.chat.id, message.from_user.id):
         aria_i_p = await aria_start()
         # Show All Downloads
@@ -56,7 +56,7 @@ async def incoming_message_f(client, message):
 
 async def incoming_youtube_dl_f(client, message):
     """ /ytdl command """
-    i_m_sefg = await message.reply_text("**Processing...**", quote=True)
+    i_m_sefg = await message.reply_text("<b>Processing...</b>", quote=True)
     # LOGGER.info(message)
     # extract link from message
     dl_url, cf_name, yt_dl_user_name, yt_dl_pass_word = await extract_link(
@@ -65,7 +65,7 @@ async def incoming_youtube_dl_f(client, message):
     LOGGER.info(dl_url)
     LOGGER.info(cf_name)
     if dl_url is not None:
-        await i_m_sefg.edit_text("**Extracting Links....**")
+        await i_m_sefg.edit_text("<b>Extracting Links....</b>")
         current_user_id = message.from_user.id
         # create an unique directory
         user_working_dir = os.path.join(DOWNLOAD_LOCATION, str(current_user_id))
