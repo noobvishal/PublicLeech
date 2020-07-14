@@ -32,8 +32,8 @@ async def status_message_f(client, message):
         # Show All Downloads
         downloads = aria_i_p.get_downloads()
         #
-        DOWNLOAD_ICON = "📥"
-        UPLOAD_ICON = "📤"
+        DOWNLOAD_ICON = "▼"
+        UPLOAD_ICON = "▲"
         #
         msg = ""
         for download in downloads:
@@ -50,20 +50,12 @@ async def status_message_f(client, message):
             e_t_a = str(download.eta_string())
             current_gid = str(download.gid)
             #
-            msg += f"<B>{downloading_dir_name}</B>\n"
-            msg += f"{total_length_size}"
-            msg += " | "
-            msg += f"{progress_percent_string}"
-            msg += " | "
-            msg += f"{download_current_status}"
-            msg += " | \n"
-            msg += f"{DOWNLOAD_ICON} {down_speed_string}"
-            msg += " | "
-            msg += f"{UPLOAD_ICON} {up_speed_string}"
-            msg += " | "
-            msg += f"{e_t_a}"
-            msg += " | \n"
-            msg += f"<code>{Commandi.CANCEL} {current_gid}</code>"
+            msg += f"⁍ <code>{downloading_dir_name}</code>\n"
+            msg += f"<b>Status:</b> {download_current_status} | <b>ETA:</b> {e_t_a}\n"
+            msg += f"<b>Size:</b> {total_length_size}\n"
+            msg += f"<b>Progress:</b> {progress_percent_string}\n"
+            msg += f"<b>Speed:</b> {down_speed_string} {DOWNLOAD_ICON} | {down_speed_string} {UPLOAD_ICON}\n"
+            msg += f"<code>/{Commandi.CANCEL} {current_gid}</code>"
             msg += "\n\n"
         LOGGER.info(msg)
         if msg == "":
