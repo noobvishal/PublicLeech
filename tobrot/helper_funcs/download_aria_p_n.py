@@ -300,7 +300,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                 except:
                     pass
                 #
-                msg = f"\n<b>Downloading File:</b> `{downloading_dir_name}`"
+                msg = f"\n<b>Downloading File:</b> <code>{downloading_dir_name}</code>"
                 msg += f"\n<b>Speed:</b> {file.download_speed_string()} 🔽 / {file.upload_speed_string()} 🔼"
                 msg += f"\n<b>Progress:</b> {file.progress_string()}"
                 msg += f"\n<b>Total Size:</b> {file.total_length_string()}"
@@ -319,25 +319,25 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     previous_message = msg
             else:
                 msg = file.error_message
-                await event.edit(f"`{msg}`")
+                await event.edit(f"<code>{msg}</code>")
                 return False
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await check_progress_for_dl(aria2, gid, event, previous_message)
         else:
-            await event.edit(f"<b>File Downloaded Successfully:</b> `{file.name}`")
+            await event.edit(f"<b>File Downloaded Successfully:</b> <code>{file.name}</code>")
             return True
     except Exception as e:
         LOGGER.info(str(e))
         if " not found" in str(e) or "'file'" in str(e):
-            await event.edit("<b>Download Canceled :</b>\n`{}`".format(file.name))
+            await event.edit("<b>Download Canceled :</b>\n<code>{}</code>".format(file.name))
             return False
         elif " depth exceeded" in str(e):
             file.remove(force=True)
-            await event.edit("<b>Download Auto Canceled :</b>\n`{}`\nYour Torrent/Link is Dead.".format(file.name))
+            await event.edit("<b>Download Auto Canceled :</b>\n<code>{}</code>\nYour Torrent/Link is Dead.".format(file.name))
             return False
         else:
             LOGGER.info(str(e))
-            await event.edit("<u>Error</u> :\n`{}` \n\n#Error".format(str(e)))
+            await event.edit("<u>Error</u> :\n<code>{}</code> \n\n#Error".format(str(e)))
             return
 # https://github.com/jaskaranSM/UniBorg/blob/6d35cf452bce1204613929d4da7530058785b6b1/stdplugins/aria.py#L136-L164
 

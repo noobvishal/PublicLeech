@@ -133,7 +133,7 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, e
         message_for_progress_display = message
         if not edit_media:
             message_for_progress_display = await message.reply_text(
-                "<b>Upload Started For:</b> `{}`".format(os.path.basename(local_file_name))
+                "<b>Upload Started For:</b> <code>{}</code>".format(os.path.basename(local_file_name))
             )
         if local_file_name.upper().endswith(("MKV", "MP4", "WEBM")):
             metadata = extractMetadata(createParser(local_file_name))
