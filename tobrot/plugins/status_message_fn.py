@@ -111,7 +111,7 @@ async def exec_message_f(client, message):
         else:
             _o = o.split("\n")
             o = "`\n".join(_o)
-        OUTPUT = f"<b>QUERY:</b>\n__Command:__\n`{cmd}` \n__PID:__\n`{process.pid}`\n\n<b>stderr:</b> \n`{e}`\n<b>Output:</b>\n{o}"
+        OUTPUT = f"<b>QUERY:</b>\n<i>Command:</i>\n<code>{cmd}</code> \n<i>PID:</i>\n<code>{process.pid}<code>\n\n<b>stderr:</b> \n<code>{e}</code>\n<b>Output:</b>\n{o}"
 
         if len(OUTPUT) > MAX_MESSAGE_LENGTH:
             with open("exec.text", "w+", encoding="utf8") as out_file:
